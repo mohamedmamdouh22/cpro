@@ -1,8 +1,7 @@
-
 void Enqueue(FILE *ptr)
 {
     system("cls") ;
-    showcursor(0) ;
+    displayCursor(0) ;
     char another;
     employee *temp ;
     printf("please enter all data\n");
@@ -22,41 +21,58 @@ void Enqueue(FILE *ptr)
         scanf("%d",&temp->age) ;
         printf("Enter Employee salary : ") ;
         scanf("%f",&temp->salary) ;
-        employee *holder=front;
+
 
         printf("enter employee id :");
         scanf("%d",&id);
-        temp->id=id;
+
 
         temp->next = NULL ;
         if(front == NULL)
         {
+            temp->id=id;
             front = rear = temp;
-        }else
-        {
-              while(holder!= NULL)
-        {
-
-            if(id==holder->id)
-            {
-                flage=1;
-                break;
-            }
-            holder=holder->next;
         }
-        do
+        else
         {
-            printf("******invalid id****** \n please enter another id: ");
-            scanf("%d",&id);
-            if(id!= temp->id){
-                flage=0;
-            }
-            holder->id=id;
+            employee *holder=front;
+            // check the id
+              while(holder!= NULL)
+                {
 
-        }while(flage==1);
+                    if(id==holder->id)
+                    {
+                        flage=1;
+                        break;
+                    }
+                    holder=holder->next;
+                }
+        while(flage==1)
+            {
+                printf("******invalid id****** \n please enter another id: ");
+                scanf("%d",&id);
+                holder=front;
+                 while(holder!= NULL)
+                {
+
+                    if(id==holder->id)
+                    {
+                        flage=1;
+                        break;
+                    }
+                    else{
+                        flage=5;
+                    }
+                    holder=holder->next;
+                }
+
+        }
+            temp->id=id;
             rear->next = temp ;
             rear = temp ;
+
         }
+
         fwrite(temp,sizeof(employee),1,ptr) ;
         fprintf(ptr,"\n") ;
         count++ ;
@@ -66,7 +82,7 @@ void Enqueue(FILE *ptr)
         printf("Enter your choice :  ") ;
         another = getche() ;
     }while(another=='y' || another =='Y');
-    hidecursor(0) ;
+    removeCursor(0) ;
     system("cls") ;
-}
 
+}
