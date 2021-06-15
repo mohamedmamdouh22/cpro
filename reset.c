@@ -1,7 +1,7 @@
 void Reset(FILE *ptr)
 {
     system("cls") ;
-    showcursor(0) ;
+    displayCursor(0) ;
     // Free the queue.
     employee *temp=front ;
     while( temp != NULL )
@@ -12,13 +12,11 @@ void Reset(FILE *ptr)
     }
     // Free the file  ...
     fclose(ptr) ;
-    ptr = fopen("Employees DataBase.txt","wb+") ;
-    freopen("Employees DataBase.txt","ab+",ptr) ;
+    ptr = fopen("data file.bin","wb+") ;
+    freopen("data file.bin","ab+",ptr) ;
 
-    printf("\n****All data is cleared *****\n") ;
+    printf("\n****All data is deleted *****\n") ;
     system("pause");
-    hidecursor(0) ;
+    removeCursor(0) ;
     system("cls");
 }
-
-

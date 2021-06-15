@@ -1,13 +1,13 @@
 void Display(FILE *ptr)
 {
     system("cls") ;
-    showcursor(0) ;
+    displayCursor(0) ;
     employee *temp;
 
         if( front == NULL )
         {
-            printf("\n\n queue is empty\n\n") ;
-            hidecursor(0) ;
+            printf("\n\n**** queue is empty******\n\n") ;
+            removeCursor(0) ;
         }
 
         else
@@ -15,18 +15,28 @@ void Display(FILE *ptr)
 
             temp = front ;
             int index=1;
+            printf("\n========================="
+           "==========================="
+           "=========================");
+    printf("\n EMPLOYE NUMBER\t\t NAME\t  ID\tAGE\tDEGREE\t\tSALARY\t"
+           "\n"
+           ,index,temp->name,temp->id,temp->age,temp->degree,
+           temp->salary);
+    printf("==========================="
+           "==========================="
+           "=======================\n");
             while( temp != NULL )
             {
-                printf("employee number [%d] \n",index);
-                printf("his name is %s\n",temp->name);
-                printf("his id is %d\n",temp->id);
-                printf("his age is %d\n",temp->age);
-                printf("his name is %f\n",temp->salary);
+                printf("\n\t[%d]\t\t%s\t   %d\t  %d\t  %c\t\t%.2f\t\n",index,temp->name, temp->id, temp->age,temp->degree,
+           temp->salary);
+
+
                 temp = temp->next ;
                 index++;
             }
         }
+        puts("");
     system("pause") ;
-    hidecursor(0) ;
+    removeCursor(0) ;
     system("cls") ;
 }

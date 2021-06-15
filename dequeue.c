@@ -1,7 +1,7 @@
 void Dequeue(FILE *ptr)
 {
         system("cls") ;
-        showcursor(0) ;
+        displayCursor(0) ;
         char another ;
             employee *holder = malloc( sizeof(employee) ) ;
             rewind(ptr) ;
@@ -10,7 +10,7 @@ void Dequeue(FILE *ptr)
             {
                  printf("\n\n file is empty...\n\n") ;
                  system("pause") ;
-                 hidecursor(0) ;
+                 removeCursor(0) ;
                  system("cls") ;
             }
 
@@ -20,8 +20,16 @@ void Dequeue(FILE *ptr)
             {
                 do
                 {
+                        if(emp_count(ptr)==0)
+                        {
+                            printf("\n\n file is empty\n\n");
+                            system("pause") ;
+                            removeCursor(0) ;
+                            system("cls") ;
+                            break;
+                        }
                         rewind(ptr) ;
-                        // Reading data from file and sotre it in the memory
+                        // Reading data from file and store it in the memory
                         front=rear =NULL;
                         while( fread(holder,sizeof(employee),1,ptr) >= 1 )
                         {
@@ -44,7 +52,7 @@ void Dequeue(FILE *ptr)
                         }
                         rear->next = NULL ;
 
-                    // Delete from here ...
+                    // Delete first node ...
 
                         employee *temp ;
                         temp = front ;
@@ -54,9 +62,9 @@ void Dequeue(FILE *ptr)
                          // copy the stored data in memory to file again
                         fclose(ptr) ;
                         //clear the file
-                        ptr = fopen("Employees DataBase.txt","wb+") ;
+                        ptr = fopen("data file.bin","wb+") ;
                         //return it to append binary mode
-                        freopen("Employees DataBase.txt","ab+",ptr) ;
+                        freopen("data file.bin","ab+",ptr) ;
 
                        temp = front ;
 
@@ -66,14 +74,14 @@ void Dequeue(FILE *ptr)
                             fprintf(ptr,"\n") ;
                             temp = temp->next ;
                         }
-                        printf("\n*****Employee is Successfully Deleted*****\n") ;
+                        printf("\n*****Employee Deleted*****\n") ;
 
-                        printf("\n to add new employee enter Y or y if not type any character********\n") ;
+                        printf("\n to delete new employee enter Y or y if not type any character********\n") ;
                         printf("Enter your choice :  ") ;
                         another = getche() ;
                 }while(another == 'y'|| another =='Y');
 
-                hidecursor(0) ;
+                removeCursor(0) ;
                 system("cls") ;
             }
 }

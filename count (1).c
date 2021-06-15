@@ -5,7 +5,7 @@ int emp_count(FILE *ptr)
         int total_count=0 ;
         temp = malloc(sizeof(employee)) ;
         rewind(ptr) ;
-        while( fread(temp,sizeof(employee),1,ptr) == 1 )
+        while( fread(temp,sizeof(employee),1,ptr) >= 1 )
         {
              total_count++ ;
              fseek(ptr,1,SEEK_CUR) ;
@@ -17,16 +17,17 @@ int emp_count(FILE *ptr)
 void count_display(FILE *fptr)
 {
         system("cls") ;
-        showcursor(0) ;
+
+        displayCursor(0) ;
         if(emp_count(fptr)==0)
         {
             printf("\n************* The file is empty************\n");
+            system("pause");
         }
         else{
         printf("\n******numbers of employees in file  is %d **********\n",emp_count(fptr));
          system("pause");
         }
-        hidecursor(0) ;
+        removeCursor(0) ;
         system("cls");
 }
-

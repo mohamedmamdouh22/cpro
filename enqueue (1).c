@@ -1,3 +1,4 @@
+
 void Enqueue(FILE *ptr)
 {
     system("cls") ;
@@ -15,9 +16,13 @@ void Enqueue(FILE *ptr)
         fflush(stdin);
         gets(temp->name) ;
         fflush(stdin) ;
+        do{
         printf("enter the class of employee A or B or C: ");
+        fflush(stdin);
         scanf("%c",&temp->degree);
+        }while(temp->degree!='A'  && temp->degree != 'B' && temp->degree != 'C');
         printf("Enter Employee age : ") ;
+
         scanf("%d",&temp->age) ;
         printf("Enter Employee salary : ") ;
         scanf("%f",&temp->salary) ;

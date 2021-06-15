@@ -1,8 +1,7 @@
-
 void search_emp()
 {
         system("cls") ;
-        showcursor(0) ;
+        displayCursor(0) ;
         employee *temp = malloc(sizeof(employee)) ;
         char another;
         temp=front;
@@ -12,7 +11,7 @@ void search_emp()
             {
                 printf("\n\n queue is empty\n\n") ;
                 system("pause") ;
-                hidecursor(0) ;
+                removeCursor(0) ;
                 system("cls") ;
             }
             else
@@ -42,14 +41,14 @@ void search_emp()
                     }
                     if(flage==0)
                     {
-                        printf("/n employee with id %d is not found\n",key);
+                        printf("\n employee with id %d is not found\n",key);
                     }
 
                     printf("\n enter Y or y to search for new employee to end enter any char \n") ;
                     printf("\nEnter your choice :  ") ;
                     another = getche() ;
                 }while(another=='y' || another =='Y');
-                hidecursor(0) ;
+                removeCursor(0) ;
                 system("cls") ;
             }
 
