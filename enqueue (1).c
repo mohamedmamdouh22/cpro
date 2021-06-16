@@ -16,6 +16,7 @@ void Enqueue(FILE *ptr)
         fflush(stdin);
         gets(temp->name) ;
         fflush(stdin) ;
+
         }while(!is_string(temp->name));
         do{
         printf("enter the class of employee A or B or C: ");
@@ -27,17 +28,17 @@ void Enqueue(FILE *ptr)
         printf("Enter Employee age : ") ;
         scanf("%d",&temp->age) ;
 
-        }while(!isspace(temp->age) && getchar()!='\n');
+        }while(!isspace(temp->age) && getchar()!='\n' || temp->age<0);
         do{
             fflush(stdin);
         printf("Enter Employee salary : ") ;
         scanf("%f",&temp->salary) ;
-        }while(!isspace(temp->salary) && getchar()!='\n');
+        }while(!isspace(temp->salary) && getchar()!='\n' || temp->salary<0);
         do{
             fflush(stdin);
-        printf("enter employee id :");
-        scanf("%d",&id);
-        }while(!isspace(temp->id) && getchar()!='\n');
+            printf("enter employee id :");
+            scanf("%d",&id);
+        }while(!isspace(temp->id) && getchar()!='\n' ||  id<0);
 
         temp->next = NULL ;
         if(front == NULL)

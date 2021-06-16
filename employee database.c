@@ -107,7 +107,7 @@ void main()
 }
  }while(character!=13);
  SetConsoleTextAttribute(h,15) ;
-        gotoxy(40,20);
+
         switch(option)
         {
             case 1 :
@@ -334,21 +334,19 @@ void draw2(int y) {
       printf("%c",188) ;
 }
 
-
-int is_string(char name[50])
+ int is_string(char name[50])
 {
-    for(int i=0;i<strlen(name);i++)
+
+    for (int i = 0; i < strlen(name); ++i)
     {
-        if(isdigit(name[i])==0)
+        if (!(isalpha(name[i])) && (name[i] != '\n') && (name[i] != ' '))
         {
-            return 1;
+            return 0;
+
         }
-
     }
-    return 0;
+    return 1;
 }
-
-
 
 void Enqueue(FILE *ptr)
 {
@@ -368,6 +366,7 @@ void Enqueue(FILE *ptr)
         fflush(stdin);
         gets(temp->name) ;
         fflush(stdin) ;
+
         }while(!is_string(temp->name));
         do{
         printf("enter the class of employee A or B or C: ");
@@ -379,17 +378,17 @@ void Enqueue(FILE *ptr)
         printf("Enter Employee age : ") ;
         scanf("%d",&temp->age) ;
 
-        }while(!isspace(temp->age) && getchar()!='\n');
+        }while(!isspace(temp->age) && getchar()!='\n' || temp->age<0);
         do{
             fflush(stdin);
         printf("Enter Employee salary : ") ;
         scanf("%f",&temp->salary) ;
-        }while(!isspace(temp->salary) && getchar()!='\n');
+        }while(!isspace(temp->salary) && getchar()!='\n' || temp->salary<0);
         do{
             fflush(stdin);
-        printf("enter employee id :");
-        scanf("%d",&id);
-        }while(!isspace(temp->id) && getchar()!='\n');
+            printf("enter employee id :");
+            scanf("%d",&id);
+        }while(!isspace(temp->id) && getchar()!='\n' ||  id<0);
 
         temp->next = NULL ;
         if(front == NULL)
@@ -501,7 +500,7 @@ void Dequeue(FILE *ptr)
                  system("cls") ;
             }
 
-
+            //there is a data in file
 
             else
             {
@@ -515,7 +514,7 @@ void Dequeue(FILE *ptr)
                             system("cls") ;
                             break;
                         }
-                        rewind(ptr) ;
+                        rewind(ptr);
                         // Reading data from file and store it in the memory
                         front=rear =NULL;
                         while( fread(holder,sizeof(employee),1,ptr) >= 1 )
@@ -544,7 +543,7 @@ void Dequeue(FILE *ptr)
                         employee *temp ;
                         temp = front ;
                         front = front->next ;
-                        count-- ;
+                        count--;
                         free(temp) ;
                          // copy the stored data in memory to file again
                         fclose(ptr) ;
@@ -626,10 +625,11 @@ void Edit_emp(FILE *ptr)
                         switch(choice)
                         {
                         case 1:
-
-                            printf("\n\n enter new id : ");
-                            fflush(stdin);
-                            scanf("%d",&newId);
+                                    do{
+                                        fflush(stdin);
+                                        printf("enter employee id :");
+                                        scanf("%d",&newId);
+                                    }while(!isspace(newId) && getchar()!='\n' ||  newId<0);
                                         employee *holder=front;
                                         // check the id
                                           while(holder!= NULL)
@@ -664,20 +664,29 @@ void Edit_emp(FILE *ptr)
                                     }
                                     temp->id=newId;
                                     break;
-                        case 2:
-                            printf("\n\n enter new name: ");
-                            fflush(stdin);
-                            gets(temp->name);
+                            case 2:
+                                    do{
+                                        printf("\nEnter Employee first and last names : ") ;
+                                        fflush(stdin);
+                                        gets(temp->name) ;
+                                        fflush(stdin) ;
+
+                                        }while(!is_string(temp->name));
                             break;
                         case 3:
-                            printf("\n\n enter new salary: ");
-                            fflush(stdin);
-                            scanf("%f",&temp->salary);
+                                      do{
+                                                fflush(stdin);
+                                            printf("Enter Employee salary : ") ;
+                                            scanf("%f",&temp->salary) ;
+                                            }while(!isspace(temp->salary) && getchar()!='\n' || temp->salary<0);
                             break;
                         case 4:
-                            printf("\n\n enter new age: ");
-                            fflush(stdin);
-                            scanf("%d",&temp->age);
+                                    do{
+                                        fflush(stdin);
+                                        printf("Enter Employee age : ") ;
+                                        scanf("%d",&temp->age) ;
+
+                                    }while(!isspace(temp->age) && getchar()!='\n' || temp->age<0);
                             break;
                         case 5:
                             do{
