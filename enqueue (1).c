@@ -11,25 +11,33 @@ void Enqueue(FILE *ptr)
     {
         temp =malloc(sizeof(employee)) ;
         //get info
+        do{
         printf("\nEnter Employee first and last names : ") ;
         fflush(stdin);
         gets(temp->name) ;
         fflush(stdin) ;
+        }while(!is_string(temp->name));
         do{
         printf("enter the class of employee A or B or C: ");
         fflush(stdin);
         scanf("%c",&temp->degree);
-        }while(temp->degree!='A'  && temp->degree != 'B' && temp->degree != 'C');
+        }while(temp->degree !='A' && temp->degree !='B' && temp->degree !='C');
+        do{
+        fflush(stdin);
         printf("Enter Employee age : ") ;
-
         scanf("%d",&temp->age) ;
+
+        }while(!isspace(temp->age) && getchar()!='\n');
+        do{
+            fflush(stdin);
         printf("Enter Employee salary : ") ;
         scanf("%f",&temp->salary) ;
-
-
+        }while(!isspace(temp->salary) && getchar()!='\n');
+        do{
+            fflush(stdin);
         printf("enter employee id :");
         scanf("%d",&id);
-
+        }while(!isspace(temp->id) && getchar()!='\n');
 
         temp->next = NULL ;
         if(front == NULL)
