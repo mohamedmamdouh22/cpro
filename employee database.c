@@ -355,7 +355,7 @@ void Enqueue(FILE *ptr)
     char again;
     employee *temp ;
     printf("please enter all data\n");
-    int id,flage=0;
+    int id,check=0;
 
     do
     {
@@ -405,14 +405,14 @@ void Enqueue(FILE *ptr)
 
                     if(id==holder->id)
                     {
-                        flage=1;
+                        check=1;
                         break;
                     }
                     holder=holder->next;
                 }
-        while(flage==1)
+        while(check==1)
             {
-                printf("******invalid id****** \n please enter again id: ");
+                printf("\n\n repeted id \n\n please enter another id: ");
                 scanf("%d",&id);
                 holder=front;
                  while(holder!= NULL)
@@ -420,11 +420,13 @@ void Enqueue(FILE *ptr)
 
                     if(id==holder->id)
                     {
-                        flage=1;
+                        //still make check equal to 1 to repet
+                        check=1;
                         break;
                     }
                     else{
-                        flage=5;
+                            //change its value to end the loop
+                        check=2;
                     }
                     holder=holder->next;
                 }
@@ -644,7 +646,7 @@ void Edit_emp(FILE *ptr)
                                             }
                                     while(x==1)
                                         {
-                                            printf("******invalid id****** \n please enter again id: ");
+                                            printf("\n\n repeted id \n\n please enter another id: ");
                                             scanf("%d",&newId);
                                             holder=front;
                                              while(holder!= NULL)
