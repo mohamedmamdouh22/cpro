@@ -1,9 +1,8 @@
-
 void Enqueue(FILE *ptr)
 {
     system("cls") ;
     displayCursor(0) ;
-    char another;
+    char again;
     employee *temp ;
     printf("please enter all data\n");
     int id,flage=0;
@@ -12,7 +11,7 @@ void Enqueue(FILE *ptr)
     {
         temp =malloc(sizeof(employee)) ;
         //get info
-        printf("\nEnter Employee Name : ") ;
+        printf("\nEnter Employee first and last names : ") ;
         fflush(stdin);
         gets(temp->name) ;
         fflush(stdin) ;
@@ -54,7 +53,7 @@ void Enqueue(FILE *ptr)
                 }
         while(flage==1)
             {
-                printf("******invalid id****** \n please enter another id: ");
+                printf("******invalid id****** \n please enter again id: ");
                 scanf("%d",&id);
                 holder=front;
                  while(holder!= NULL)
@@ -82,11 +81,12 @@ void Enqueue(FILE *ptr)
         fprintf(ptr,"\n") ;
         count++ ;
 
-        printf("*******employee added successfully********\n");
-        printf("*******to add new employee enter Y or y if not type any character********\n");
+        printf("\n*******employee added successfully********\n");
+        printf("\n*******to add new employee enter Y or y if not type any character********\n");
         printf("Enter your choice :  ") ;
-        another = getche() ;
-    }while(another=='y' || another =='Y');
+        again = getche() ;
+        system("cls");
+    }while(again=='y' || again =='Y');
     removeCursor(0) ;
     system("cls") ;
 
