@@ -14,7 +14,7 @@ void Reset(FILE *ptr)
     fclose(ptr) ;
     ptr = fopen("data file.bin","wb+") ;
     freopen("data file.bin","ab+",ptr) ;
-
+    front=NULL;
     printf("\n****All data is deleted *****\n") ;
     system("pause");
     removeCursor(0) ;
