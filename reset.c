@@ -1,3 +1,4 @@
+
 void Reset(FILE *ptr)
 {
     system("cls") ;
