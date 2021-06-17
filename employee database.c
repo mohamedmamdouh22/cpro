@@ -372,23 +372,24 @@ void Enqueue(FILE *ptr)
         printf("enter the class of employee A or B or C: ");
         fflush(stdin);
         scanf("%c",&temp->degree);
-        }while(temp->degree !='A' && temp->degree !='B' && temp->degree !='C');
+        }while(temp->degree !='A' &&  temp->degree !='B' && temp->degree !='C');
         do{
         fflush(stdin);
         printf("Enter Employee age : ") ;
         scanf("%d",&temp->age) ;
 
-        }while(!isspace(temp->age) && getchar()!='\n' || temp->age<0);
+        }while(!isspace(temp->age) && !isdigit(temp->age) && getchar()!='\n' || temp->age<0);
         do{
             fflush(stdin);
         printf("Enter Employee salary : ") ;
         scanf("%f",&temp->salary) ;
-        }while(!isspace(temp->salary) && getchar()!='\n' || temp->salary<0);
+        }while(!isspace(temp->salary) && !isdigit(temp->salary) && getchar()!='\n' || temp->salary<0);
         do{
             fflush(stdin);
             printf("enter employee id :");
             scanf("%d",&id);
-        }while(!isspace(temp->id) && getchar()!='\n' ||  id<0);
+
+        }while(!isspace(temp->id && !isdigit(temp->id)) && getchar()!='\n' ||  id<0);
 
         temp->next = NULL ;
         if(front == NULL)
@@ -741,37 +742,51 @@ void Display(FILE *ptr)
     displayCursor(0) ;
     employee *temp;
 
-        if( front == NULL )
+        if( emp_count(ptr) == 0 )
         {
-            printf("\n\n**** queue is empty******\n\n") ;
+            printf("\n\n**** file is empty******\n\n") ;
+            system("pause");
             removeCursor(0) ;
+            system("cls");
+
         }
 
         else
         {
+                rewind(ptr);
+                front=rear=NULL;
+                temp=front;
+                temp =malloc(sizeof(employee)) ;
+                while(fread(temp,sizeof(employee),1,ptr)>=1)
+                {
+                    if(front==NULL)
+                    {
+                        front=rear=temp;
+                        temp->next=NULL;
+                    }
+                    else{
+                        rear->next=temp;
+                        rear=temp;
+                        temp->next=NULL;
 
-            temp = front ;
-            int index=1;
-            printf("\n========================="
-           "==========================="
-           "=========================");
-    printf("\n EMPLOYE NUMBER\t\t    NAME\t     ID\t   AGE\t    DEGREE\tSALARY\t"
-           "\n"
-           ,index,temp->name,temp->id,temp->age,temp->degree,
-           temp->salary);
-    printf("==========================="
-           "==========================="
-           "=======================\n");
-            while( temp != NULL )
-            {
-                printf("\n\t[%d]\t\t%s\t     %d\t     %d\t     %c\t    %.2f\t\n",index,temp->name, temp->id, temp->age,temp->degree,
-           temp->salary);
+                    }
+                    temp=malloc(sizeof(employee));
+                    fseek(ptr,1,SEEK_CUR);
+
+                }
+                rear->next=NULL;
+                employee *holder=front;
+                while(holder!=NULL)
+                {
+                    printf("%s \t %d \t \t %d \t %f \t %c \n",holder->name,holder->id,holder->age,holder->salary,holder->degree);
+                    holder=holder->next;
+                }
 
 
-                temp = temp->next ;
-                index++;
+
+
             }
-        }
+
         puts("");
     system("pause") ;
     removeCursor(0) ;
