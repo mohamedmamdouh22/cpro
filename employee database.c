@@ -776,9 +776,11 @@ void Display(FILE *ptr)
                 }
                 rear->next=NULL;
                 employee *holder=front;
+                printf("name \t id \t age \t salary \t class \n");
+                printf("======================================================\n");
                 while(holder!=NULL)
                 {
-                    printf("%s \t %d \t \t %d \t %f \t %c \n",holder->name,holder->id,holder->age,holder->salary,holder->degree);
+                    printf("%s \t %d \t  %d \t %f \t %c \n",holder->name,holder->id,holder->age,holder->salary,holder->degree);
                     holder=holder->next;
                 }
 
