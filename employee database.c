@@ -439,7 +439,8 @@ void Enqueue(FILE *ptr)
         }
 
         fwrite(temp,sizeof(employee),1,ptr) ;
-        fprintf(ptr,"\n") ;
+        fprintf(ptr,"\n");
+
         count++ ;
 
         printf("\n*******employee added successfully********\n");
@@ -536,7 +537,8 @@ void Dequeue(FILE *ptr)
                                 count++;
                             }
                             holder = malloc( sizeof(employee) ) ;
-                            fseek(ptr,1,SEEK_CUR) ;
+                            fseek(ptr,1,SEEK_CUR);
+
                         }
                         rear->next = NULL ;
 
